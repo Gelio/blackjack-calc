@@ -12,7 +12,7 @@ import {FORM_DIRECTIVES} from '@angular/common';
 export class Home implements OnInit {
 
   constructor() {
-    // Do stuff
+    
   }
 
   ngOnInit() {
