@@ -19,6 +19,7 @@ import {CardPickerComponent} from '../card-picker';
 export class Home {
     cardTypes: CardList;
     deck: Deck;
+    pickedCards: Deck;
 
     constructor(public deckService: DeckService) {
         this.cardTypes = this.deckService.generateCardTypes();
@@ -27,5 +28,6 @@ export class Home {
 
     newGame() {
         this.deck = this.deckService.generateDeck(this.cardTypes);
+        this.pickedCards = this.deckService.generateDeck(this.cardTypes, 0);
     }
 }

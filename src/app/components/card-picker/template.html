@@ -1,7 +1,11 @@
 <div>
-    <select class="form-control">
-        <option *ngFor="let card of deck | mapValues">
-            {{card | json}}
+    <select class="form-control" (change)="onChange($event.target.value)">
+        <option value="0" selected>
+            Pick a card
+        </option>
+
+        <option *ngFor="let card of deck | mapValues" value="{{card.key.text}}" [disabled]="!playableCards.has(card.key.text)">
+            {{ card.key.text }}
         </option>
     </select>
 </div>

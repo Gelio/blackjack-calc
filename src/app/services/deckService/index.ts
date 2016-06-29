@@ -8,7 +8,6 @@ import {Card} from './card';
 export class DeckService {
     /**
      * Generates all the card types and stores it in an internal map
-     * 
      * @returns A generated card types map
      */
     generateCardTypes(): CardList {
@@ -32,8 +31,6 @@ export class DeckService {
 
     /**
      * Generates the whole deck from already generated card types
-     * 
-     * 
      * @param cardTypes A map of card types to generate a deck from
      * @param amount    How many times each card will be put into the deck
      * @returns         A deck generated from provided card types
@@ -51,5 +48,25 @@ export class DeckService {
         });
 
         return deck;
+    }
+
+    /**
+     * Counts which cards are playable
+     * @param deck          The list of all possible cards along with their amount
+     * @param pickedCards   The list of picked cards along with their amount
+     * @returns             A list of cards that can be played
+     */
+    computePlayableCards(deck: Deck, pickedCards: Deck): CardList {
+        let playableCards = new Map<string, Card>();
+
+        deck.forEach((total, card) => {
+            let amount = total - pickedCards.get(card);
+
+            if (amount > 0) {
+                playableCards.set(card.text, card);
+            }
+        });
+
+        return playableCards;
     }
 }
