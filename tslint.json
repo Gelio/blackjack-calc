@@ -3,8 +3,11 @@
         "class-name": true,
         "curly": true,
         "eofline": true,
-        "indent": "spaces",
-        "max-line-length": false,
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "max-line-length": [false],
         "member-ordering": [
             true,
             "public-before-private",
@@ -29,8 +32,14 @@
             "check-else",
             "check-whitespace"
         ],
-        "quotemark": false,
-        "semicolon": true,
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "semicolon": [
+            true,
+            "always"
+        ],
         "triple-equals": [
             true,
             "allow-null-check"
