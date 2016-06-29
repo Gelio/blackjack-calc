@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/common';
+import * as Rx from 'rxjs';
 
 import {CardList, Deck, CardSelectEvent} from '../../services/deckService/types.d.ts';
 import {DeckService} from '../../services/deckService';
@@ -19,13 +20,16 @@ export class Home {
     deck: Deck;
     pickedCards: Deck;
 
+    pickedCardsSubject: Rx.Subject<Deck>;
+
     constructor(public deckService: DeckService) {
         this.cardTypes = this.deckService.generateCardTypes();
+        this.pickedCardsSubject = new Rx.Subject<Deck>();
         this.newGame();
     }
 
     newGame() {
-        this.deck = this.deckService.generateDeck(this.cardTypes, 1);
+        this.deck = this.deckService.generateDeck(this.cardTypes, 4);
         this.pickedCards = this.deckService.generateDeck(this.cardTypes, 0);
     }
 
@@ -40,8 +44,6 @@ export class Home {
                 currentCardIndex = _.findIndex(this.pickedCards, { card: currentCard });
             this.pickedCards[currentCardIndex].amount++;
         }
-        console.log(event);
-
-        console.log(this.pickedCards);
+        this.pickedCardsSubject.next(this.pickedCards);
     }
 }
