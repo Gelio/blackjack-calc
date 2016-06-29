@@ -20,6 +20,7 @@ export class Home {
     cardTypes: CardList;
     deck: Deck;
     pickedCards: Deck;
+    cardPickers: any[];  // the length of this array determines how many select inputs are to be displayed
 
     pickedCardsSubject: Rx.Subject<Deck>;
 
@@ -32,6 +33,11 @@ export class Home {
     newGame() {
         this.deck = this.deckService.generateDeck(this.cardTypes, 4);
         this.pickedCards = this.deckService.generateDeck(this.cardTypes, 0);
+        this.cardPickers = [1, 1];
+    }
+
+    insertCardPicker() {
+        this.cardPickers.push(1);
     }
 
     cardSelected(event: CardSelectEvent) {

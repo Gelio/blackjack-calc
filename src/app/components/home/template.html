@@ -1,9 +1,18 @@
-<div class="container">
-    <button type="button" class="btn btn-primary" (click)="newGame()">New game</button>
+<div class="container m-t-1">
+    <div class="col-xs-12 m-b-1">
+        <button type="button" class="btn btn-primary" (click)="newGame()">New game</button>
+    </div>
 
-    <card-picker [deck]="deck" [pickedCards]="pickedCards" [pickedCardsSubject]="pickedCardsSubject" (cardSelected)="cardSelected($event)"></card-picker>
+    <div class="col-xs-6">
+        <h2>Your cards</h2>
+        <div class="m-y-1">
+            <card-picker *ngFor="let a of cardPickers" [deck]="deck" [pickedCards]="pickedCards" [pickedCardsSubject]="pickedCardsSubject" (cardSelected)="cardSelected($event)"></card-picker>
+        </div>
 
-    <card-picker [deck]="deck" [pickedCards]="pickedCards" [pickedCardsSubject]="pickedCardsSubject" (cardSelected)="cardSelected($event)"></card-picker>
+        <button type="button" class="btn btn-info" (click)="insertCardPicker()">Pick additional card</button>
+    </div>
 
-    <card-picker [deck]="deck" [pickedCards]="pickedCards" [pickedCardsSubject]="pickedCardsSubject" (cardSelected)="cardSelected($event)"></card-picker>
+    <div class="col-xs-6">
+        
+    </div>
 </div>
