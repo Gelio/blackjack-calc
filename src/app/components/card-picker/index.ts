@@ -1,6 +1,6 @@
 /* beautify ignore:start */
 import {Component, Input, OnInit} from '@angular/core';
-import {Deck as DeckType} from '../../services/deck/interfaces.d.ts';
+import {Deck as DeckType} from '../../services/deckService/types.d.ts';
 /* beautify ignore:end */
 
 @Component({
