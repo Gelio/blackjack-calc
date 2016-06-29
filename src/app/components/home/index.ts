@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/common';
 
 @Component({
@@ -9,14 +9,9 @@ import {FORM_DIRECTIVES} from '@angular/common';
   template: require('./template.html')
 })
 
-export class Home implements OnInit {
+export class Home {
 
-  constructor() {
-    
+  newGame() {
+    console.log('New game');
   }
-
-  ngOnInit() {
-
-  }
-
 }

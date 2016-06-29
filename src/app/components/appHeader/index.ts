@@ -8,5 +8,5 @@ import {Component} from '@angular/core';
     template: require('./template.html')
 })
 export class AppHeaderComponent {
-    
+
 }

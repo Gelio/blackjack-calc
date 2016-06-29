@@ -19,12 +19,4 @@ describe('Home', () => {
 
     // Set up the helper 
     let assert = new Assert<Home>(Home, providers);
-
-    assert.it('should log ngOnInit', (component, element, fixture) => {
-        spyOn(console, 'log');
-        expect(console.log).not.toHaveBeenCalled();
-
-        component.ngOnInit();
-        expect(console.log).toHaveBeenCalledWith('Hello Home');
-    });
 });
