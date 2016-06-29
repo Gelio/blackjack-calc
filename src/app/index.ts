@@ -6,6 +6,7 @@ import {FORM_PROVIDERS} from '@angular/common';
 import '../style/app.scss';
 
 import {Api} from './services/api';         // ./services/api/index.ts
+import {AppHeaderComponent} from './components/appHeader';
 import routes from './routes';
 
 /*
@@ -15,7 +16,7 @@ import routes from './routes';
 @Component({
     selector: 'app', // <app></app>
     providers: [...FORM_PROVIDERS, Api],
-    directives: [...ROUTER_DIRECTIVES],
+    directives: [...ROUTER_DIRECTIVES, AppHeaderComponent],
     pipes: [],
     styles: [require('./style.scss')],
     template: require('./template.html')
