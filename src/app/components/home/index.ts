@@ -1,17 +1,23 @@
 import {Component} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/common';
 
+import {Deck} from '../../services/deck';
+
 @Component({
-  selector: 'home',
-  directives: [...FORM_DIRECTIVES],
-  pipes: [],
-  styles: [require('./style.scss')],
-  template: require('./template.html')
+    selector: 'home',
+    directives: [...FORM_DIRECTIVES],
+    providers: [Deck],
+    pipes: [],
+    styles: [require('./style.scss')],
+    template: require('./template.html')
 })
 
 export class Home {
+    constructor(public deck: Deck) {
 
-  newGame() {
-    console.log('New game');
-  }
+    }
+
+    newGame() {
+        this.deck.generateDeck();
+    }
 }

@@ -14,6 +14,9 @@ export class Deck {
         this.generateDeck();
     }
 
+    /**
+     * Generates all the card types and stores it in an internal map
+     */
     generateCardTypes() {
         this.cardTypes = new Map<string, Card>();
 
@@ -31,6 +34,9 @@ export class Deck {
         });
     }
 
+    /**
+     * Generates the whole deck from already generated card types
+     */
     generateDeck() {
         if (this.cardTypes.size === 0) {
             throw new Error('Card types have to be generated before generating the deck');
