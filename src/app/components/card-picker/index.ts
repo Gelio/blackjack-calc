@@ -2,8 +2,7 @@
 import {Component, EventEmitter, Input, Output, OnInit, OnChanges} from '@angular/core';
 import {MapValuesPipe} from '../../pipes/map-values';
 import {DeckService} from '../../services/deckService';
-import {Deck, CardList} from '../../services/deckService/types.d.ts';
-import {Card} from '../../services/deckService/card';
+import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.d.ts';
 /* beautify ignore:end */
 
 @Component({
@@ -16,26 +15,35 @@ import {Card} from '../../services/deckService/card';
 export class CardPickerComponent implements OnInit, OnChanges {
     @Input() deck: Deck;
     @Input() pickedCards: Deck;
-    @Output() changed = new EventEmitter();
+    @Output('cardSelected') cardSelected = new EventEmitter<CardSelectEvent>();
     playableCards: CardList;
-    selectedCard: Card;
+    previousCard: string = '0';
+    currentCard: string = '0';
 
     constructor(public deckService: DeckService) {
 
     }
 
     ngOnInit() {
-        console.log('Whole deck:', this.deck);
-        console.log('Picked cards', this.pickedCards);
-        
-        this.playableCards = this.deckService.computePlayableCards(this.deck, this.pickedCards);
+        this.refreshPlayableCards();
     }
 
     ngOnChanges(changes) {
-        
+        console.log('ngOnChanges: pickedCards:', this.pickedCards);
+        this.refreshPlayableCards();
     }
 
     onChange(cardText: string) {
-        console.log('Picked card', cardText);
+        this.previousCard = this.currentCard;
+        this.currentCard = cardText;
+
+        this.cardSelected.emit({
+            previousCard: this.previousCard,
+            currentCard: cardText
+        });
+    }
+
+    refreshPlayableCards() {
+        this.playableCards = this.deckService.computePlayableCards(this.deck, this.pickedCards);
     }
 }

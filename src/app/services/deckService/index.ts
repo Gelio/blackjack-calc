@@ -44,7 +44,7 @@ export class DeckService {
 
         // 4 of each card type
         cardTypes.forEach(card => {
-            deck.set(card, 4);
+            deck.set(card, amount);
         });
 
         return deck;
