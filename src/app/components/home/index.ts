@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/common';
 import * as Rx from 'rxjs';
+import * as _ from 'lodash';
 
 import {CardList, Deck, CardSelectEvent} from '../../services/deckService/types.d.ts';
 import {DeckService} from '../../services/deckService';
