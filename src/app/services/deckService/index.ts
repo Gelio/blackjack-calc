@@ -1,5 +1,6 @@
 /* beautify ignore:start */
 import {Injectable} from '@angular/core';
+import 'lodash';
 import {CardList, Deck} from './types.d.ts';
 import {Card} from './card';
 /* beautify ignore:end */
@@ -35,8 +36,8 @@ export class DeckService {
      * @param amount    How many times each card will be put into the deck
      * @returns         A deck generated from provided card types
      */
-    generateDeck(cardTypes: CardList, amount: number = 4): Deck {
-        const deck = new Map<Card, number>();
+    generateDeck(cardTypes: CardList, amount: number = 1): Deck {
+        const deck: Deck = [];
 
         if (cardTypes.size === 0) {
             throw new Error('There must be at least one card type to generate the deck');
@@ -44,7 +45,10 @@ export class DeckService {
 
         // 4 of each card type
         cardTypes.forEach(card => {
-            deck.set(card, amount);
+            deck.push({
+                card: card,
+                amount: amount
+            });
         });
 
         return deck;
@@ -59,10 +63,12 @@ export class DeckService {
     computePlayableCards(deck: Deck, pickedCards: Deck): CardList {
         let playableCards = new Map<string, Card>();
 
-        deck.forEach((total, card) => {
-            let amount = total - pickedCards.get(card);
+        deck.forEach(deckElement => {
+            let {card, amount: total} = deckElement;
+            let pickedAmount = _.find(pickedCards, { card: card }).amount;
+            let leftoverAmount = total - pickedAmount;
 
-            if (amount > 0) {
+            if (leftoverAmount > 0) {
                 playableCards.set(card.text, card);
             }
         });

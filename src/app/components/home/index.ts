@@ -32,12 +32,17 @@ export class Home {
     }
 
     cardSelected(event: CardSelectEvent) {
-        let previousCard = this.cardTypes.get(event.previousCard),
-            previousCardAmount = this.pickedCards.get(previousCard),
-            currentCard = this.cardTypes.get(event.currentCard),
-            currentCardAmount = this.pickedCards.get(currentCard);
+        if (event.previousCard !== '0') {
+            let previousCard = this.cardTypes.get(event.previousCard),
+                previousCardIndex = _.findIndex(this.pickedCards, { card: previousCard });
+            this.pickedCards[previousCardIndex].amount--;
+        }
+        if (event.currentCard !== '0') {
+            let currentCard = this.cardTypes.get(event.currentCard),
+                currentCardIndex = _.findIndex(this.pickedCards, { card: currentCard });
+            this.pickedCards[currentCardIndex].amount++;
+        }
 
-        this.pickedCards.set(previousCard, previousCardAmount + 1);
-        this.pickedCards.set(currentCard, currentCardAmount - 1);
+        console.log(this.pickedCards);
     }
 }

@@ -4,8 +4,8 @@
             Pick a card
         </option>
 
-        <option *ngFor="let card of deck | mapValues" value="{{card.key.text}}" [disabled]="!playableCards.has(card.key.text)">
-            {{ card.key.text }}
+        <option *ngFor="let card of playableCards | mapValues" value="{{card.key}}" [disabled]="!playableCards.has(card.key)">
+            {{ card.key }}
         </option>
     </select>
 </div>

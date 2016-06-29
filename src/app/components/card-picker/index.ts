@@ -1,5 +1,5 @@
 /* beautify ignore:start */
-import {Component, EventEmitter, Input, Output, OnInit, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core';
 import {MapValuesPipe} from '../../pipes/map-values';
 import {DeckService} from '../../services/deckService';
 import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.d.ts';
@@ -12,7 +12,7 @@ import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.
     styles: [require('./style.scss').toString()],
     template: require('./template.html')
 })
-export class CardPickerComponent implements OnInit, OnChanges {
+export class CardPickerComponent implements OnChanges {
     @Input() deck: Deck;
     @Input() pickedCards: Deck;
     @Output('cardSelected') cardSelected = new EventEmitter<CardSelectEvent>();
@@ -22,10 +22,6 @@ export class CardPickerComponent implements OnInit, OnChanges {
 
     constructor(public deckService: DeckService) {
 
-    }
-
-    ngOnInit() {
-        this.refreshPlayableCards();
     }
 
     ngOnChanges(changes) {
