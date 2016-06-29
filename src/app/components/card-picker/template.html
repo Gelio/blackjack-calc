@@ -1,0 +1,7 @@
+<div>
+    <select class="form-control">
+        <option *ngFor="let card of deck.keys()">
+            {{card | json}}
+        </option>
+    </select>
+</div>

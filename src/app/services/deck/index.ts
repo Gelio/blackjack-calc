@@ -1,12 +1,13 @@
 /* beautify ignore:start */
 import {Injectable} from '@angular/core';
+import {CardList, Deck as DeckType} from './interfaces.d.ts';
 import {Card} from './card';
 /* beautify ignore:end */
 
 @Injectable()
 export class Deck {
-    cardTypes: Map<string, Card>;   // lists available card types referring to them with their name
-    deck: Map<Card, number>;    // the number is the amount of that card left in the deck
+    cardTypes: CardList;   // lists available card types referring to them with their name
+    deck: DeckType;    // the number is the amount of that card left in the deck
 
     constructor() {
         // Generate card types
