@@ -36,7 +36,7 @@ export class DeckService {
      * @param amount    How many times each card will be put into the deck
      * @returns         A deck generated from provided card types
      */
-    generateDeck(cardTypes: CardList, amount: number = 1): Deck {
+    generateDeck(cardTypes: CardList, amount: number = 4): Deck {
         const deck: Deck = [];
 
         if (cardTypes.size === 0) {

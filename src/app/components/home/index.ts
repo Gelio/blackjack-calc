@@ -2,9 +2,7 @@ import {Component} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/common';
 
 import {CardList, Deck, CardSelectEvent} from '../../services/deckService/types.d.ts';
-
 import {DeckService} from '../../services/deckService';
-
 import {CardPickerComponent} from '../card-picker';
 
 @Component({
@@ -27,7 +25,7 @@ export class Home {
     }
 
     newGame() {
-        this.deck = this.deckService.generateDeck(this.cardTypes);
+        this.deck = this.deckService.generateDeck(this.cardTypes, 1);
         this.pickedCards = this.deckService.generateDeck(this.cardTypes, 0);
     }
 
@@ -42,6 +40,7 @@ export class Home {
                 currentCardIndex = _.findIndex(this.pickedCards, { card: currentCard });
             this.pickedCards[currentCardIndex].amount++;
         }
+        console.log(event);
 
         console.log(this.pickedCards);
     }

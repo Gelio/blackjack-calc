@@ -1,5 +1,5 @@
 /* beautify ignore:start */
-import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnInit, OnChanges, DoCheck, KeyValueDiffers} from '@angular/core';
 import {MapValuesPipe} from '../../pipes/map-values';
 import {DeckService} from '../../services/deckService';
 import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.d.ts';
@@ -12,21 +12,31 @@ import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.
     styles: [require('./style.scss').toString()],
     template: require('./template.html')
 })
-export class CardPickerComponent implements OnChanges {
+export class CardPickerComponent implements OnInit, OnChanges, DoCheck {
     @Input() deck: Deck;
     @Input() pickedCards: Deck;
-    @Output('cardSelected') cardSelected = new EventEmitter<CardSelectEvent>();
+    @Output() cardSelected = new EventEmitter<CardSelectEvent>();
     playableCards: CardList;
     previousCard: string = '0';
     currentCard: string = '0';
 
-    constructor(public deckService: DeckService) {
+    differList: any;
 
+    constructor(public deckService: DeckService, private differs: KeyValueDiffers) {
+
+    }
+
+    ngOnInit() {
+        this.differList = []; 
     }
 
     ngOnChanges(changes) {
         console.log('ngOnChanges: pickedCards:', this.pickedCards);
         this.refreshPlayableCards();
+    }
+
+    ngDoCheck() {
+        
     }
 
     onChange(cardText: string) {
@@ -41,5 +51,6 @@ export class CardPickerComponent implements OnChanges {
 
     refreshPlayableCards() {
         this.playableCards = this.deckService.computePlayableCards(this.deck, this.pickedCards);
+
     }
 }
