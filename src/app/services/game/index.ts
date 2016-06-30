@@ -1,6 +1,6 @@
 /* beautify ignore:start */
 import { Injectable } from '@angular/core';
-import * as Rx from 'rxjs'; 
+import * as Rx from 'rxjs';
 
 import { Card, Deck } from '../../interfaces';
 import { DeckGenerator } from '../deck-generator';
