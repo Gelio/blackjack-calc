@@ -1,8 +1,8 @@
 /* beautify ignore:start */
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import {CardList, Deck} from './types.d.ts';
-import {Card} from './card';
+import { CardList, Deck } from './types.d.ts';
+import { Card } from './card';
 /* beautify ignore:end */
 
 @Injectable()

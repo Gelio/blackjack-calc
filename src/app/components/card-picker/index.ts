@@ -1,9 +1,9 @@
 /* beautify ignore:start */
-import {Component, EventEmitter, Input, Output, OnChanges, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, OnInit } from '@angular/core';
 import * as Rx from 'rxjs';
-import {MapValuesPipe} from '../../pipes/map-values';
-import {DeckService} from '../../services/deckService';
-import {Deck, CardList, CardSelectEvent} from '../../services/deckService/types.d.ts';
+import { MapValuesPipe } from '../../pipes/map-values';
+import { DeckService } from '../../services/deckService';
+import { Deck, CardList, CardSelectEvent } from '../../services/deckService/types.d.ts';
 /* beautify ignore:end */
 
 @Component({
