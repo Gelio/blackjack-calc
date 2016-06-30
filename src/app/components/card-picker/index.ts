@@ -1,6 +1,5 @@
 /* beautify ignore:start */
 import { Component, Input } from '@angular/core';
-import * as Rx from 'rxjs';
 
 import { Card, Deck } from '../../interfaces';
 import { DeckGenerator } from '../../services/deck-generator';
@@ -19,8 +18,12 @@ export class CardPickerComponent {
     selectableCards: Deck;
 
     constructor(public DeckGenerator: DeckGenerator, public Game: Game) {
-        this.currentCard = Game.blankCard;
-        this.previousCard = Game.blankCard;
+        this.reset();
+    }
+
+    reset() {
+        this.currentCard = this.Game.blankCard;
+        this.previousCard = this.Game.blankCard;
     }
 
     newCardPicked(newCard: Card) {
