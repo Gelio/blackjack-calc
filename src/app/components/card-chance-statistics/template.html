@@ -26,6 +26,9 @@
     </table>
 
     <div>
-        Current value: {{ ChanceCalculations.computeStrengths(Game.playerCards) | json }}
+        Current strengths:
+        <div *ngFor="let strength of ChanceCalculations.computeStrengths(Game.playerCards)">
+            {{ strength }} - {{ ChanceCalculations.computeStrengthPercentageValue(strength, Game.stack) | percent:'1.2-2' }}
+        </div>
     </div>
 </div>

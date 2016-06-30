@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
-import { Deck } from '../../interfaces';
+import { BLACKJACK, Deck } from '../../interfaces';
 /* beautify ignore:end */
 
 @Injectable()
@@ -28,5 +28,35 @@ export class ChanceCalculations {
         });
 
         return _.sortBy(totalStrengths);
+    }
+
+    /**
+     * Computes how worth is it for a given strength to draw a card
+     * @param   strength    Strength to compute chance for
+     * @param   deck        The deck from which the next card is going to be drawn
+     */
+    computeStrengthPercentageValue(strength: number, deck: Deck): number {
+        if (strength > BLACKJACK) {
+            return 0;
+        }
+
+        if (deck.length === 0) {
+            return 0;
+        }
+
+        const maxPossibleDraw = BLACKJACK - strength;
+        let goodDraws = 0,
+            totalDraws = 0;
+
+        deck.forEach(deckElement => {
+            const minStrength = _.min(deckElement.card.strengths);
+
+            if (strength + minStrength <= BLACKJACK) {
+                goodDraws += deckElement.amount;
+            }
+            totalDraws += deckElement.amount;
+        });
+
+        return goodDraws / totalDraws;
     }
 }
