@@ -1,1 +1,31 @@
-<div>cardChanceStatistics</div>
+<div>
+    <table class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Card</th>
+                <th>Amount</th>
+                <th>Chance</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let deckElement of Game.stack">
+                <td>
+                    {{ deckElement.card.symbol }}
+                </td>
+
+                <td>
+                    {{ deckElement.amount }}
+                </td>
+
+                <td>
+                    {{ (deckElement.amount / Game.totalAmount) | percent:'1.2-2' }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        Current value: {{ ChanceCalculations.computeStrengths(Game.playerCards) | json }}
+    </div>
+</div>

@@ -38,6 +38,7 @@ export class CardPickerComponent {
             // TODO: search every deck for a card before updating its amount (not use one for each deck)
             // TODO: possibly make a Deck not an array, but an object with searching
             this.Game.stack[previousCardInDeckIndex].amount++;
+            this.Game.totalAmount++;
 
             if (!this.isDealer) {
                 this.Game.playerCards[previousCardInDeckIndex].amount--;
@@ -47,6 +48,7 @@ export class CardPickerComponent {
         // Process current card
         if (newCard !== this.Game.blankCard) {
             this.Game.stack[currentCardInDeckIndex].amount--;
+            this.Game.totalAmount--;
 
             if (!this.isDealer) {
                 this.Game.playerCards[currentCardInDeckIndex].amount++;

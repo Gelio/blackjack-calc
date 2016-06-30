@@ -1,5 +1,9 @@
 /* beautify ignore:start */
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+
+import { ChanceCalculations } from '../../services/chance-calculations';
+import { DeckGenerator } from '../../services/deck-generator';
+import { Game } from '../../services/game';
 /* beautify ignore:end */
 
 @Component({
@@ -8,5 +12,7 @@ import {Component} from '@angular/core';
     template: require('./template.html')
 })
 export class CardChanceStatisticsComponent {
+    constructor(public ChanceCalculations: ChanceCalculations, public DeckGenerator: DeckGenerator, public Game: Game) {
 
+    }
 }

@@ -14,6 +14,7 @@ export class Game {
     dealerCard: Card;
     playerCards: Deck;
     stack: Deck;
+    totalAmount: number;
 
     constructor(public DeckGenerator: DeckGenerator) {
         this.cardTypes = DeckGenerator.generateCardTypes(this.cardSymbols);
@@ -21,9 +22,12 @@ export class Game {
     }
 
     restart() {
+        let eachCardAmount = 4;
+
+        this.currentStrengths = [0];
         this.dealerCard = this.blankCard;
         this.playerCards = this.DeckGenerator.generateDeck(this.cardTypes, 0);
-        this.stack = this.DeckGenerator.generateDeck(this.cardTypes, 4);
-        this.currentStrengths = [0];
+        this.stack = this.DeckGenerator.generateDeck(this.cardTypes, eachCardAmount);
+        this.totalAmount = this.cardTypes.length * eachCardAmount;
     }
 }
