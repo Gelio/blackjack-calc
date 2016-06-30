@@ -27,8 +27,15 @@
 
     <div>
         Current strengths:
-        <div *ngFor="let strength of ChanceCalculations.computeStrengths(Game.playerCards)">
-            {{ strength }} - {{ ChanceCalculations.computeStrengthPercentageValue(strength, Game.stack) | percent:'1.2-2' }}
+        <div *ngFor="let strength of playerCardsStrengths; let i = index" class="strength-info"
+            [class.winning]="strengthPercentageValues[i] === 1" [class.losing]="strengthPercentageValues[i] === 0">
+            {{ strength }} - {{ strengthPercentageValues[i] | percent:'1.2-2' }}
         </div>
+    </div>
+
+    <div>
+        <h2>
+            Total chance: {{ totalChance | percent: '1.2-2' }}
+        </h2>
     </div>
 </div>

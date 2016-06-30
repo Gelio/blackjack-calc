@@ -1,0 +1,10 @@
+.strength-info {
+    &.winning {
+        color: green;
+        font-weight: bold;
+    }
+
+    &.losing {
+        color: red;
+    }
+}

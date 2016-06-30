@@ -51,7 +51,7 @@ export class ChanceCalculations {
         deck.forEach(deckElement => {
             const minStrength = _.min(deckElement.card.strengths);
 
-            if (strength + minStrength <= BLACKJACK) {
+            if (minStrength <= maxPossibleDraw) {
                 goodDraws += deckElement.amount;
             }
             totalDraws += deckElement.amount;

@@ -56,5 +56,8 @@ export class CardPickerComponent {
                 this.Game.dealerCard = newCard;
             }
         }
+
+        // Emit changes
+        this.Game.changeObservable.next(1);
     }
 }
