@@ -1,56 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FORM_DIRECTIVES } from '@angular/common';
-import * as Rx from 'rxjs';
-import * as _ from 'lodash';
+// import * as Rx from 'rxjs';
+// import * as _ from 'lodash';
 
-import { CardList, Deck, CardSelectEvent } from '../../services/deckService/types.d.ts';
-import { DeckService } from '../../services/deckService';
 import { CardPickerComponent } from '../card-picker';
+import { DeckGenerator } from '../../services/deck-generator';
+import { Game } from '../../services/game';
 
 @Component({
     selector: 'home',
     directives: [...FORM_DIRECTIVES, CardPickerComponent],
-    providers: [DeckService],
+    providers: [DeckGenerator, Game],
     pipes: [],
     styles: [require('./style.scss')],
     template: require('./template.html')
 })
 
-export class Home {
-    cardTypes: CardList;
-    deck: Deck;
-    pickedCards: Deck;
-    cardPickers: any[];  // the length of this array determines how many select inputs are to be displayed
+export class Home implements OnInit {
+    cardPickers: number[];  // the length of this array determines how many select inputs are to be displayed
 
-    pickedCardsSubject: Rx.Subject<Deck>;
+    constructor(public DeckGenerator: DeckGenerator, public Game: Game) {
 
-    constructor(public deckService: DeckService) {
-        this.cardTypes = this.deckService.generateCardTypes();
-        this.pickedCardsSubject = new Rx.Subject<Deck>();
+    }
+
+    ngOnInit() {
         this.newGame();
     }
 
     newGame() {
-        this.deck = this.deckService.generateDeck(this.cardTypes, 4);
-        this.pickedCards = this.deckService.generateDeck(this.cardTypes, 0);
         this.cardPickers = [1, 1];
+        this.Game.restart();
     }
 
     insertCardPicker() {
         this.cardPickers.push(1);
-    }
-
-    cardSelected(event: CardSelectEvent) {
-        if (event.previousCard !== '0') {
-            let previousCard = this.cardTypes.get(event.previousCard),
-                previousCardIndex = _.findIndex(this.pickedCards, { card: previousCard });
-            this.pickedCards[previousCardIndex].amount--;
-        }
-        if (event.currentCard !== '0') {
-            let currentCard = this.cardTypes.get(event.currentCard),
-                currentCardIndex = _.findIndex(this.pickedCards, { card: currentCard });
-            this.pickedCards[currentCardIndex].amount++;
-        }
-        this.pickedCardsSubject.next(this.pickedCards);
     }
 }

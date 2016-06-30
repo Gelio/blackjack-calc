@@ -1,11 +1,11 @@
 <div>
-    <select class="form-control card-picker" (change)="onChange($event.target.value)" [value]="currentCard">
-        <option value="0" selected>
+    <select class="form-control card-picker" [ngModel]="currentCard" (ngModelChange)="newCardPicked($event)">
+        <option [ngValue]="Game.blankCard">
             Pick a card
         </option>
 
-        <option *ngFor="let deckEntry of deck" value="{{deckEntry.card.text}}" [disabled]="!playableCards.has(deckEntry.card.text)">
-            {{ deckEntry.card.text }}
+        <option *ngFor="let deckElement of selectableCards" [ngValue]="deckElement.card" [disabled]="deckElement.amount === 0">
+            {{ deckElement.card.symbol }}
         </option>
     </select>
 </div>

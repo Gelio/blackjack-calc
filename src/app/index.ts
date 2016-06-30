@@ -5,7 +5,6 @@ import {FORM_PROVIDERS} from '@angular/common';
 
 import '../style/app.scss';
 
-import {Api} from './services/api';         // ./services/api/index.ts
 import {AppHeaderComponent} from './components/appHeader';
 import routes from './routes';
 
@@ -15,7 +14,7 @@ import routes from './routes';
  */
 @Component({
     selector: 'app', // <app></app>
-    providers: [...FORM_PROVIDERS, Api],
+    providers: [...FORM_PROVIDERS],
     directives: [...ROUTER_DIRECTIVES, AppHeaderComponent],
     pipes: [],
     styles: [require('./style.scss')],
@@ -25,6 +24,5 @@ import routes from './routes';
 @RouteConfig(routes)
 
 export class App {
-    constructor(public api: Api) {
-    }
+
 }

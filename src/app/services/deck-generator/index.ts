@@ -1,5 +1,6 @@
 /* beautify ignore:start */
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 
 import { Card, Deck } from '../../interfaces/';
 /* beautify ignore:end */
@@ -32,6 +33,14 @@ export class DeckGenerator {
         }
 
         return strengths;
+    }
+
+    /**
+     * Returns the index of the card in the deck
+     * @returns     Index of the card in the Deck or -1 if a card is not included in the deck
+     */
+    getCardIndex(deck: Deck, card: Card) {
+        return _.findIndex(deck, { card: card });
     }
 
     /**
