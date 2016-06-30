@@ -1,7 +1,7 @@
 /* beautify ignore:start */
 import { Injectable } from '@angular/core';
 
-import { Card } from '../../interfaces/';
+import { Card, Deck } from '../../interfaces/';
 /* beautify ignore:end */
 
 @Injectable()
@@ -37,7 +37,7 @@ export class DeckGenerator {
     /**
      * Generates the Card objects from a given list of symbols
      * @param   list    Array of symbols to construct the Card list from
-     * @returns         Array of Card objects
+     * @returns         Array of generated Card objects
      */
     generateCardTypes(list: Array<string>): Array<Card> {
         return list.map(symbol => {
@@ -45,6 +45,20 @@ export class DeckGenerator {
                  symbol: symbol,
                  strengths: this.getSymbolStrengths(symbol)
              };
+        });
+    }
+
+    /**
+     * Generates the deck given card types and the amount of the instances of each card in the deck
+     * @param   cardTypes   Card types to put in the deck
+     * @param   amount      The number of instances of each card in the deck 
+     */
+    generateDeck(cardTypes: Array<Card>, amount: number): Deck {
+        return cardTypes.map(card => {
+            return {
+                card: card,
+                amount: amount
+            };
         });
     }
 }
