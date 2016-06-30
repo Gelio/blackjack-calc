@@ -11,7 +11,7 @@ export class DeckGenerator {
      * @param   symbol  Symbol of the card
      * @returns         Array of possible card's strength values
      */
-    getCardStrength(symbol: string): Array<number> {
+    getSymbolStrengths(symbol: string): Array<number> {
         let strengths: Array<number>;
         const parsedSymbol = parseInt(symbol);
 
@@ -34,9 +34,17 @@ export class DeckGenerator {
         return strengths;
     }
 
+    /**
+     * Generates the Card objects from a given list of symbols
+     * @param   list    Array of symbols to construct the Card list from
+     * @returns         Array of Card objects
+     */
     generateCardTypes(list: Array<string>): Array<Card> {
-        const cardTypes: Array<Card> = [];
-        return map
-        
+        return list.map(symbol => {
+             return {
+                 symbol: symbol,
+                 strengths: this.getSymbolStrengths(symbol)
+             };
+        });
     }
 }
