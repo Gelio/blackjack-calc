@@ -11,7 +11,6 @@ export class Game {
     blankCard: Card = { symbol: '-', strengths: [0] };
     cardSymbols: Array<string> = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
     cardTypes: Array<Card>;
-    changes: Rx.Subject<number>;
     currentStrengths: Array<number>;
     dealerCard: Card;
     playerCards: Deck;
@@ -19,7 +18,6 @@ export class Game {
 
     constructor(public DeckGenerator: DeckGenerator) {
         this.cardTypes = DeckGenerator.generateCardTypes(this.cardSymbols);
-        this.changes = new Rx.Subject<number>();
         this.restart();
     }
 

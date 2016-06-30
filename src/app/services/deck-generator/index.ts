@@ -70,4 +70,16 @@ export class DeckGenerator {
             };
         });
     }
+
+    /**
+     * Returns a new instance of the deck (and its contents)
+     */
+    copyDeck(deck: Deck): Deck {
+        return deck.map(deckElement => {
+            return {
+                card: deckElement.card,
+                amount: deckElement.amount
+            };
+        });
+    }
 }

@@ -4,7 +4,7 @@
             Pick a card
         </option>
 
-        <option *ngFor="let deckElement of selectableCards" [ngValue]="deckElement.card" [disabled]="deckElement.amount === 0">
+        <option *ngFor="let deckElement of Game.stack" [ngValue]="deckElement.card" [disabled]="deckElement.amount === 0">
             {{ deckElement.card.symbol }}
         </option>
     </select>
