@@ -1,4 +1,18 @@
 <div>
+    <div>
+        Current strengths:
+        <div *ngFor="let strength of playerCardsStrengths; let i = index" class="strength-info"
+            [class.winning]="strengthPercentageValues[i] === 1" [class.losing]="strengthPercentageValues[i] === 0">
+            {{ strength }} - {{ strengthPercentageValues[i] | percent:'1.2-2' }}
+        </div>
+    </div>
+
+    <div>
+        <h2>
+            Total chance: {{ totalChance | percent: '1.2-2' }}
+        </h2>
+    </div>
+
     <table class="table table-bordered table-hover table-sm">
         <thead>
             <tr>
@@ -24,20 +38,4 @@
             </tr>
         </tbody>
     </table>
-
-    <div>
-        Current strengths:
-        <div *ngFor="let strength of playerCardsStrengths; let i = index" class="strength-info"
-            [class.winning]="strengthPercentageValues[i] === 1" [class.losing]="strengthPercentageValues[i] === 0">
-            {{ strength }} - {{ strengthPercentageValues[i] | percent:'1.2-2' }}
-        </div>
-    </div>
-
-    <div>
-        <h2>
-            Total chance: {{ totalChance | percent: '1.2-2' }}
-        </h2>
-    </div>
-
-    Chances displayed above relate to the chance of the next drawn card being advantageous (getting your score closer to a blackjack).
 </div>

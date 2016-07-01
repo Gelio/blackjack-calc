@@ -6,11 +6,28 @@
     <div class="row">
         <div class="col-xs-6">
             <h2>Your cards</h2>
-            <div class="m-y-1">
-                <card-picker *ngFor="let a of cardPickers"></card-picker>
-            </div>
 
-            <button type="button" class="btn btn-info" (click)="insertCardPicker()">Pick additional card</button>
+            <div class="row">
+                <div class="col-xs-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards">
+                    <h4><a href="#" (click)="switchDeck($event, 1)">Main</a></h4>
+
+                    <div class="m-y-1">
+                        <card-picker *ngFor="let a of cardPickers" [deck]="Game.playerCards"></card-picker>
+                    </div>
+
+                    <button type="button" class="btn btn-info" (click)="insertCardPicker(1)">Pick additional card</button>
+                </div>
+
+                <div class="col-xs-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards2">
+                    <h4><a href="#" (click)="switchDeck($event, 2)">Split</a></h4>
+
+                    <div class="m-y-1">
+                        <card-picker *ngFor="let a of cardPickersSplit" [deck]="Game.playerCards2"></card-picker>
+                    </div>
+
+                    <button type="button" class="btn btn-info" (click)="insertCardPicker(2)">Pick additional card</button>
+                </div>
+            </div>
         </div>
 
         <div class="col-xs-6">
@@ -25,11 +42,11 @@
 
     <div class="row m-t-2">
         <div class="col-xs-6">
-            <card-chance-statistics></card-chance-statistics>
+            <card-chance-statistics [deck]="currentDeck"></card-chance-statistics>
         </div>
 
         <div class="col-xs-6">
-            Table of recommended choices
+            Chances displayed relate to the chance of the next drawn card being advantageous (getting your score closer to a blackjack).
         </div>
     </div>
 </div>

@@ -1,1 +1,8 @@
 // component styles are encapsulated and only applied to their components
+.card-picker__wrapper {
+    border-radius: 10px;
+}
+
+.card-picker__wrapper--active {
+    background-color: #e5e5e5;
+}

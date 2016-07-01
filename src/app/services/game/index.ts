@@ -15,6 +15,7 @@ export class Game {
     currentStrengths: Array<number>;
     dealerCard: Card;
     playerCards: Deck;
+    playerCards2: Deck; // this one is for the split
     stack: Deck;
     totalAmount: number;
 
@@ -30,6 +31,7 @@ export class Game {
         this.currentStrengths = [0];
         this.dealerCard = this.blankCard;
         this.playerCards = this.DeckGenerator.generateDeck(this.cardTypes, 0);
+        this.playerCards2 = this.DeckGenerator.generateDeck(this.cardTypes, 0);
         this.stack = this.DeckGenerator.generateDeck(this.cardTypes, eachCardAmount);
         this.totalAmount = this.cardTypes.length * eachCardAmount;
         this.changeObservable.next(1);

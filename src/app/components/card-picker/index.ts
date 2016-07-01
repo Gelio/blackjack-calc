@@ -12,6 +12,7 @@ import { Game } from '../../services/game';
     template: require('./template.html')
 })
 export class CardPickerComponent {
+    @Input('deck') currentDeck: Deck;
     @Input() isDealer: boolean = false;
     currentCard: Card;
     previousCard: Card;
@@ -41,7 +42,7 @@ export class CardPickerComponent {
             this.Game.totalAmount++;
 
             if (!this.isDealer) {
-                this.Game.playerCards[previousCardInDeckIndex].amount--;
+                this.currentDeck[previousCardInDeckIndex].amount--;
             }
         }
 
@@ -51,7 +52,7 @@ export class CardPickerComponent {
             this.Game.totalAmount--;
 
             if (!this.isDealer) {
-                this.Game.playerCards[currentCardInDeckIndex].amount++;
+                this.currentDeck[currentCardInDeckIndex].amount++;
             } else {
                 this.Game.dealerCard = newCard;
             }
