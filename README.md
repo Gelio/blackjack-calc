@@ -4,6 +4,7 @@ This app calculates the chance for a successful card pick in Blackjack, given yo
 
 It features card splitting, as well as endless card picking.
 
+
 ## Configuration (for developers) ##
 
 This app can be easily modified if for instance other cards aside from an ace had different strengths, or if there were more cards to play.

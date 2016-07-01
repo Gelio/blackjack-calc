@@ -4,11 +4,11 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6">
-            <h2>Your cards</h2>
+        <div class="col-xs-12 col-md-8">
+            <h2 class="text-md-center">Your cards</h2>
 
             <div class="row">
-                <div class="col-xs-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards">
+                <div class="col-xs-12 col-md-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards">
                     <h4><a href="#" (click)="switchDeck($event, 1)">Main</a></h4>
 
                     <div class="m-y-1">
@@ -18,7 +18,7 @@
                     <button type="button" class="btn btn-info" (click)="insertCardPicker(1)">Pick additional card</button>
                 </div>
 
-                <div class="col-xs-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards2">
+                <div class="col-xs-12 col-md-6 p-a-1 card-picker__wrapper" [class.card-picker__wrapper--active]="currentDeck === Game.playerCards2">
                     <h4><a href="#" (click)="switchDeck($event, 2)">Split</a></h4>
 
                     <div class="m-y-1">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-md-4">
             <h2>Dealer's card</h2>
             <div class="m-y-1">
                 <card-picker [isDealer]="true"></card-picker>
@@ -41,11 +41,11 @@
     <hr>
 
     <div class="row m-t-2">
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-md-8">
             <card-chance-statistics [deck]="currentDeck"></card-chance-statistics>
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-md-4">
             Chances displayed relate to the chance of the next drawn card being advantageous (getting your score closer to a blackjack).
         </div>
     </div>
